@@ -24,14 +24,18 @@ jobs:
         uses: 'hashicorp/setup-terraform@v3'
         with:
           terraform_version: 1.8.4
+
+      - name: Terraform format
+        run: terraform fmt
+
+      - name: Terraform format check
+        run: terraform fmt -check
+
       - name: Terraform init
         run: terraform init
-      - name: Terraform format
-        run: terraform fmt -check
-      
+
       - name: Terraform plan
         run: terraform plan
+
       - name: Terraform apply
         run: terraform apply -auto-approve
-
-      
