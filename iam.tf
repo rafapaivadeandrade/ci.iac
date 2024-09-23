@@ -37,22 +37,31 @@ resource "aws_iam_role" "tf-role" {
   inline_policy {
     name = "tf-permissions"
     policy = jsonencode({
-      Statement = [{
-        Sid      = "Statement1"
-        Action   = "ecr:*"
-        Effect   = "Allow"
-        Resource = "*"
+      Version = "2012-10-17",
+      Statement = [
+        {
+          Effect = "Allow",
+          Action = [
+            "s3:ListBucket",
+            "s3:GetObject",
+            "s3:PutObject",
+            "s3:DeleteObject"
+          ],
+          Resource = [
+            "arn:aws:s3:::rocketseat-iac-staging-9f47d8ca",
+            "arn:aws:s3:::rocketseat-iac-staging-9f47d8ca/*"
+          ]
         },
         {
-          Sid      = "Statement2"
-          Action   = "iam:*"
-          Effect   = "Allow"
+          Sid = "Statement2",
+          Action = "iam:*",
+          Effect = "Allow",
           Resource = "*"
         },
         {
-          Sid      = "Statement3"
-          Action   = "s3:*"
-          Effect   = "Allow"
+          Sid = "Statement3",
+          Action = "ecr:*",
+          Effect = "Allow",
           Resource = "*"
         }
       ]
