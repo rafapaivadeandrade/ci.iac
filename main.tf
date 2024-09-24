@@ -13,6 +13,7 @@ terraform {
 }
 provider "aws" {
   region = "us-east-2"
+    # profile = "AdministratorAccess-416098782400"
 }
 resource "aws_s3_bucket" "terraform-state" {
   bucket        = "rocketseat-iac-staging-9f47d8ca"
